@@ -1,283 +1,210 @@
 package com.example.app4g;
 
-import android.animation.ArgbEvaluator;
+
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.graphics.drawable.DrawableCompat;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.app4g.session.PrefManager;
 
 public class PagerActivity extends AppCompatActivity {
 
-
-    private ViewPager mViewPager;
-    ImageButton mNextBtn;
-    Button mSkipBtn, mFinishBtn;
-
-    ImageView zero, one, two;
-    ImageView[] indicators;
-
-    int lastLeftValue = 0;
-
-    CoordinatorLayout mCoordinator;
-
-    SectionsPagerAdapter mSectionsPagerAdapter;
-
-    static final String TAG = "PagerActivity";
-
-    int page = 0;   //  to track page position
-
+    private ViewPager viewPager;
+    private MyViewPagerAdapter myViewPagerAdapter;
+    private LinearLayout dotsLayout;
+    private TextView[] dots;
+    private int[] layouts;
+    private Button btnSkip, btnNext;
+    private PrefManager prefManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pager);
+        // mengecek lauch activity - sebelum memanggil setContentView()
+        prefManager = new PrefManager(this);
+        if (!prefManager.isFirstTimeLaunch()) {
+            launchHomeScreen();
+            finish();
+        }
 
+        getSupportActionBar().hide();
 
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().getDecorView().setSystemUiVisibility(
-                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.black_trans80));
+        // membuat transparan notifikasi
+        if (Build.VERSION.SDK_INT >= 21) {
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         }
 
         setContentView(R.layout.activity_pager);
+        getSupportActionBar().hide();
+
+        viewPager = (ViewPager) findViewById(R.id.view_pager);
+        dotsLayout = (LinearLayout) findViewById(R.id.layoutDots);
+        btnSkip = (Button) findViewById(R.id.btn_skip);
+        btnNext = (Button) findViewById(R.id.btn_next);
 
 
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        // layout xml slide 1 sampai 4
+        // add few more layouts if you want
+        layouts = new int[]{
+                R.layout.slide0,
+                R.layout.slide1,
+                R.layout.slide2,
+                R.layout.slide3,
+                R.layout.slide4};
 
-        mNextBtn = (ImageButton) findViewById(R.id.intro_btn_next);
-        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP)
-            mNextBtn.setImageDrawable(
-                   tintMyDrawable(ContextCompat.getDrawable(this, R.drawable.ic_chevron_right_24dp), Color.WHITE)
-            );
+        // tombol dots (lingkaran kecil perpindahan slide)
+        addBottomDots(0);
 
-        mSkipBtn = (Button) findViewById(R.id.intro_btn_skip);
-        mFinishBtn = (Button) findViewById(R.id.intro_btn_finish);
+        // membuat transparan notifikasi
+        changeStatusBarColor();
 
-        zero = (ImageView) findViewById(R.id.intro_indicator_0);
-        one = (ImageView) findViewById(R.id.intro_indicator_1);
-        two = (ImageView) findViewById(R.id.intro_indicator_2);
+        myViewPagerAdapter = new MyViewPagerAdapter();
+        viewPager.setAdapter(myViewPagerAdapter);
+        viewPager.addOnPageChangeListener(viewPagerPageChangeListener);
 
-        mCoordinator = (CoordinatorLayout) findViewById(R.id.main_content);
-
-
-        indicators = new ImageView[]{zero, one, two};
-
-        // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
-
-        mViewPager.setCurrentItem(page);
-        updateIndicators(page);
-
-        final int color1 = ContextCompat.getColor(this, R.color.cyan);
-        final int color2 = ContextCompat.getColor(this, R.color.orange);
-        final int color3 = ContextCompat.getColor(this, R.color.green);
-
-        final int[] colorList = new int[]{color1, color2, color3};
-
-        final ArgbEvaluator evaluator = new ArgbEvaluator();
-
-        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        btnSkip.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-                /*
-                color update
-                 */
-                int colorUpdate = (Integer) evaluator.evaluate(positionOffset, colorList[position], colorList[position == 2 ? position : position + 1]);
-                mViewPager.setBackgroundColor(colorUpdate);
-
+            public void onClick(View v) {
+                launchHomeScreen();
             }
+        });
 
+        btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onPageSelected(int position) {
-
-                page = position;
-
-                updateIndicators(page);
-
-                switch (position) {
-                    case 0:
-                        mViewPager.setBackgroundColor(color1);
-                        break;
-                    case 1:
-                        mViewPager.setBackgroundColor(color2);
-                        break;
-                    case 2:
-                        mViewPager.setBackgroundColor(color3);
-                        break;
+            public void onClick(View v) {
+                // mengecek page terakhir (slide 4)
+                // jika activity home sudah tampil
+                int current = getItem(+1);
+                if (current < layouts.length) {
+                    // move to next screen
+                    viewPager.setCurrentItem(current);
+                } else {
+                    launchHomeScreen();
                 }
-
-
-                mNextBtn.setVisibility(position == 2 ? View.GONE : View.VISIBLE);
-                mFinishBtn.setVisibility(position == 2 ? View.VISIBLE : View.GONE);
-
-
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
             }
         });
-
-        mNextBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                page += 1;
-                mViewPager.setCurrentItem(page, true);
-            }
-        });
-
-        mSkipBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent toMain = new Intent(PagerActivity.this, Login.class);
-                startActivity(toMain);
-                finish();
-            }
-        });
-
-        mFinishBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent toMain = new Intent(PagerActivity.this, Login.class);
-                startActivity(toMain);
-                finish();
-
-            }
-        });
-
-
     }
 
+    private void addBottomDots(int currentPage) {
+        dots = new TextView[layouts.length];
 
-    public static Drawable tintMyDrawable(Drawable drawable, int color) {
-        drawable = DrawableCompat.wrap(drawable);
-        DrawableCompat.setTint(drawable, color);
-        DrawableCompat.setTintMode(drawable, PorterDuff.Mode.SRC_IN);
-        return drawable;
-    }
+        int[] colorsActive = getResources().getIntArray(R.array.array_dot_active);
+        int[] colorsInactive = getResources().getIntArray(R.array.array_dot_inactive);
 
-
-    void updateIndicators(int position) {
-        for (int i = 0; i < indicators.length; i++) {
-            indicators[i].setBackgroundResource(
-                    i == position ? R.drawable.indicator_selected : R.drawable.indicator_unselected
-            );
-        }
-    }
-
-
-
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-        ImageView img;
-
-        int[] bgs = new int[]{R.drawable.ic_android_black_24dp, R.drawable.ic_android_black_24dp, R.drawable.ic_local_shipping_black_24dp};
-
-        public PlaceholderFragment() {
+        dotsLayout.removeAllViews();
+        for (int i = 0; i < dots.length; i++) {
+            dots[i] = new TextView(this);
+            dots[i].setText(Html.fromHtml("&#8226;"));
+            dots[i].setTextSize(35);
+            dots[i].setTextColor(colorsInactive[currentPage]);
+            dotsLayout.addView(dots[i]);
         }
 
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
+        if (dots.length > 0)
+            dots[currentPage].setTextColor(colorsActive[currentPage]);
+    }
+
+    private int getItem(int i) {
+        return viewPager.getCurrentItem() + i;
+    }
+
+    private void launchHomeScreen() {
+        prefManager.setFirstTimeLaunch(false);
+        startActivity(new Intent(PagerActivity.this, Login.class));
+        finish();
+    }
+
+    //  viewpager change listener
+    ViewPager.OnPageChangeListener viewPagerPageChangeListener = new ViewPager.OnPageChangeListener() {
+
+        @Override
+        public void onPageSelected(int position) {
+            addBottomDots(position);
+
+            // mengubah button lanjut 'NEXT' / 'GOT IT'
+            if (position == layouts.length - 1) {
+                // last page. make button text to GOT IT
+                btnNext.setText(getString(R.string.start));
+                btnSkip.setVisibility(View.GONE);
+            } else {
+                // still pages are left
+                btnNext.setText(getString(R.string.next));
+                btnSkip.setVisibility(View.VISIBLE);
+            }
         }
 
         @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_pager, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+        public void onPageScrolled(int arg0, float arg1, int arg2) {
 
-            img = (ImageView) rootView.findViewById(R.id.section_img);
-            img.setBackgroundResource(bgs[getArguments().getInt(ARG_SECTION_NUMBER) - 1]);
-
-
-            return rootView;
-        }
-
-
-    }
-
-    /**
-     * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
-     * one of the sections/tabs/pages.
-     */
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
-
-
-        public SectionsPagerAdapter(FragmentManager fm) {
-            super(fm);
         }
 
         @Override
-        public Fragment getItem(int position) {
-            // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+        public void onPageScrollStateChanged(int arg0) {
 
+        }
+    };
+
+    /**
+     * Making notification bar transparent
+     */
+    private void changeStatusBarColor() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.TRANSPARENT);
+        }
+    }
+
+    /**
+     * View pager adapter
+     */
+    public class MyViewPagerAdapter extends PagerAdapter {
+        private LayoutInflater layoutInflater;
+
+        public MyViewPagerAdapter() {
+        }
+
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+            layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+            View view = layoutInflater.inflate(layouts[position], container, false);
+            container.addView(view);
+
+            return view;
         }
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
-            return 3;
+            return layouts.length;
         }
 
         @Override
-        public CharSequence getPageTitle(int position) {
-            switch (position) {
-                case 0:
-                    return "SECTION 1";
-                case 1:
-                    return "SECTION 2";
-                case 2:
-                    return "SECTION 3";
-            }
-            return null;
+        public boolean isViewFromObject(View view, Object obj) {
+            return view == obj;
         }
 
-    }
 
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+            View view = (View) object;
+            container.removeView(view);
+        }
+    }
 
 }
 
