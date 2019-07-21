@@ -20,7 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.app4g.session.PrefManager;
-import com.example.app4g.users.registrasi.login.Login;
+import com.example.app4g.users.login.Login;
 
 public class PagerActivity extends AppCompatActivity {
 

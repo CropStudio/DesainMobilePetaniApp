@@ -37,9 +37,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.app4g.server.AppController;
 import com.example.app4g.server.Config_URL;
-import com.example.app4g.users.registrasi.login.Login;
 import com.example.app4g.R;
 
+import com.example.app4g.users.login.Login;
 import com.example.app4g.users.registrasi.presenter.IRegisterPresenter;
 import com.example.app4g.users.registrasi.presenter.RegisterPresenter;
 import com.example.app4g.users.registrasi.view.IRegisterView;
@@ -329,7 +329,7 @@ public class Regist extends AppCompatActivity implements IRegisterView, View.OnC
                         }else {
                             txtPoktan.setText(" -");
                         }
-                        if(!kab.equals("null") && !kec.equals("null") && !kec.equals("null")){
+                        if(!kab.equals("null") && !kec.equals("null") && !des.equals("null")){
                             txtAlamat.setText(" "+kab+", "+kec+", "+des);
                         }else if(!kab.equals("null") && !kec.equals("null")){
                             txtAlamat.setText(" "+kab+", "+kec);

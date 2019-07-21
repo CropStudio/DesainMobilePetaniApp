@@ -24,7 +24,7 @@
         <activity android:name=".MenuUtama" />
         <activity android:name=".ListData" />
         <activity android:name=".users.registrasi.Regist" />
-        <activity android:name=".users.registrasi.login.Login" />
+        <activity android:name=".users.login.Login" />
         <activity android:name=".PagerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
