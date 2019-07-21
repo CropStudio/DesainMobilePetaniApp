@@ -20,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.app4g.session.PrefManager;
+import com.example.app4g.users.registrasi.login.Login;
 
 public class PagerActivity extends AppCompatActivity {
 
@@ -51,10 +52,10 @@ public class PagerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pager);
         getSupportActionBar().hide();
 
-        viewPager = (ViewPager) findViewById(R.id.view_pager);
-        dotsLayout = (LinearLayout) findViewById(R.id.layoutDots);
-        btnSkip = (Button) findViewById(R.id.btn_skip);
-        btnNext = (Button) findViewById(R.id.btn_next);
+        viewPager = findViewById(R.id.view_pager);
+        dotsLayout = findViewById(R.id.layoutDots);
+        btnSkip = findViewById(R.id.btn_skip);
+        btnNext = findViewById(R.id.btn_next);
 
 
         // layout xml slide 1 sampai 4

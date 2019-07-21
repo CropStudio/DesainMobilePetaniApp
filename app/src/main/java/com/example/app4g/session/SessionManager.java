@@ -26,7 +26,7 @@ public class SessionManager { //fungsi session adalah untuk kembali tetap dalam 
     private static final String KEY_SESSID = "Sessid";
 
     public SessionManager(Context context) {
-        this._context = context;
+        _context = context;
         pref = _context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
         editor = pref.edit();
     }

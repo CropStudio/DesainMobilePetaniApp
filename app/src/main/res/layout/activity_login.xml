@@ -1,25 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:gravity="center"
     android:orientation="vertical"
-    android:background="@color/lightgray">
+    android:background="#f0eff3"
+    tools:context=".users.registrasi.login.Login">
 
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:stretchColumns="1">
 
     <com.glide.slider.library.SliderLayout
         android:id="@+id/slider"
         android:layout_width="match_parent"
-        android:layout_height="200dp" />
+        android:layout_height="250dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:orientation="vertical"
         android:gravity="center"
+        android:elevation="2dp"
+        android:background="@drawable/shadow"
         android:layout_gravity="center">
         <TextView
             android:layout_width="match_parent"
@@ -29,38 +35,36 @@
             android:background="@color/colorPrimary"
             android:textSize="20dp"
             android:textColor="@color/c_white"
+            android:shadowColor="@color/grey"
             android:text="Kartu Petani Berjaya"/>
     </LinearLayout>
-
-    <android.support.v7.widget.CardView
-        android:id="@+id/listpembayaran"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:clickable="true"
-        card_view:cardElevation="0dp"
-        card_view:cardCornerRadius="10dp"
-        android:foreground="?android:attr/selectableItemBackground">
 
     <!--area Form Login-->
     <LinearLayout
         android:id="@+id/toBottom"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="330dp"
         android:orientation="vertical"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:background="@drawable/rounded_white"
         android:gravity="center"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:padding="20dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
             android:text="Login KPB Lampung"
             android:textColor="@color/mainTextDark"
             android:textSize="20sp"
             android:textStyle="bold"
             />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/bg_screen3"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -141,7 +145,7 @@
         <Button
             android:id="@+id/signup"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginTop="5dp"
             android:background="@null"
             android:text="Belum punya akun? daftar disini"
@@ -154,8 +158,6 @@
             android:layout_width="match_parent"
             android:visibility="gone"
             android:layout_height="wrap_content" />
-
     </LinearLayout>
-    </android.support.v7.widget.CardView>
-
-</LinearLayout>
+    </TableLayout>
+</ScrollView>

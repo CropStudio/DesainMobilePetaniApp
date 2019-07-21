@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
-    android:background="@color/mainBackground">
+    android:background="@color/c_white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -41,7 +41,7 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="0dp"
-                    android:text="KPB Apps"
+                    android:text="KPB"
                     android:textSize="18sp" />
             </LinearLayout>
         </LinearLayout>
@@ -49,16 +49,14 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:id="@+id/toUp1"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
             android:background="@color/colorPrimary"/>
-
         <!--area Form SignUp-->
         <android.support.v4.widget.NestedScrollView
             xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
+            android:background="@color/grey_3"
             android:layout_height="match_parent">
 
             <LinearLayout
@@ -66,6 +64,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:animateLayoutChanges="true">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="Registrasi"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    />
+
+
 
                 <moe.feng.common.stepperview.VerticalStepperItemView
                     android:id="@+id/stepper_0"
@@ -127,53 +138,215 @@
                             android:background="@color/bg_screen3"/>
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="45dp"
-                            android:gravity="center"
-                            android:orientation="horizontal">
+                            android:layout_height="wrap_content"
+                            android:id="@+id/dataPetani"
+                            android:visibility="gone"
+                            android:orientation="vertical">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:gravity="center"
+                                android:orientation="horizontal">
 
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:paddingRight="10dp"
-                                android:tint="@color/colorAccent"
-                                android:src="@drawable/ic_person_pin_black_24dp" />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:hint="Nama      : "/>
-                            <TextView
-                                android:id="@+id/txtNama"
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingRight="20dp"
+                                    android:tint="@color/colorAccent"
+                                    android:src="@drawable/ic_person_pin_black_24dp" />
+                                <TextView
+                                    android:layout_width="100dp"
+                                    android:layout_height="wrap_content"
+                                    android:hint="Nama"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/titik_1"
+                                    android:hint=":"/>
+                                <TextView
+                                    android:id="@+id/txtNama"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"/>
+
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:layout_width="45dp"
+                                    android:layout_height="25dp"
+                                    android:paddingRight="15dp"
+                                    android:tint="@color/colorAccent"
+                                    android:src="@drawable/gender" />
+                                <TextView
+                                    android:layout_width="100dp"
+                                    android:layout_height="wrap_content"
+                                    android:hint="Jenis Kelamin"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/titik_4"
+                                    android:hint=":"/>
+                                <TextView
+                                    android:id="@+id/txtJenisKelamin"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"/>
+
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingRight="20dp"
+                                    android:tint="@color/colorAccent"
+                                    android:src="@drawable/ic_group_black_24dp" />
+                                <TextView
+                                    android:layout_width="100dp"
+                                    android:layout_height="wrap_content"
+                                    android:hint="Poktan"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/titik_2"
+                                    android:hint=":"/>
+                                <TextView
+                                    android:id="@+id/txtPoktan"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingRight="20dp"
+                                    android:tint="@color/colorAccent"
+                                    android:src="@drawable/ic_add_location_black_24dp" />
+                                <TextView
+                                    android:layout_width="100dp"
+                                    android:layout_height="wrap_content"
+                                    android:hint="Alamat Poktan"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/titik_3"
+                                    android:hint=":"/>
+                                <TextView
+                                    android:id="@+id/txtAlamat"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"/>
+
+                            </LinearLayout>
+
+
+                            <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="Suparmin"/>
+                                android:gravity="center"
+                                android:layout_marginTop="5dp"
+                                android:orientation="horizontal">
 
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="45dp"
-                            android:gravity="center"
-                            android:orientation="horizontal">
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingRight="10dp"
+                                    android:tint="@color/colorAccent"
+                                    android:src="@drawable/ic_phone_black_24dp" />
 
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:paddingRight="10dp"
-                                android:tint="@color/colorAccent"
-                                android:src="@drawable/ic_group_black_24dp" />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:hint="Poktan    : "/>
-                            <TextView
-                                android:id="@+id/txtPoktan"
+                                <android.support.design.widget.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:passwordToggleEnabled="true">
+
+                                    <android.support.design.widget.TextInputEditText
+                                        android:id="@+id/edTlp"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:backgroundTintMode="@color/colorAccent"
+                                        android:hint="No Telpon"
+                                        android:textSize="12dp"
+                                        android:inputType="phone"/>
+
+                                </android.support.design.widget.TextInputLayout>
+
+
+                            </LinearLayout>
+                            <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="Sido Panen"/>
+                                android:gravity="center"
+                                android:orientation="horizontal">
 
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingRight="10dp"
+                                    android:tint="@color/colorAccent"
+                                    android:src="@drawable/ic_lock_black_24dp" />
+
+                                <android.support.design.widget.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:passwordToggleEnabled="true">
+
+                                    <android.support.design.widget.TextInputEditText
+                                        android:id="@+id/edPass"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:backgroundTintMode="@color/colorAccent"
+                                        android:hint="Password"
+                                        android:textSize="12dp"
+                                        android:inputType="textPassword"/>
+
+                                </android.support.design.widget.TextInputLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingRight="10dp"
+                                    android:tint="@color/colorAccent"
+                                    android:src="@drawable/ic_lock_black_24dp" />
+
+                                <android.support.design.widget.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:passwordToggleEnabled="true">
+
+                                    <android.support.design.widget.TextInputEditText
+                                        android:id="@+id/edRePass"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:backgroundTintMode="@color/colorAccent"
+                                        android:hint="Ulangi Password"
+                                        android:textSize="12dp"
+                                        android:inputType="textPassword"/>
+
+                                </android.support.design.widget.TextInputLayout>
+
+                            </LinearLayout>
                         </LinearLayout>
-
-
-
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -189,11 +362,8 @@
                                 android:background="@color/bg_screen3"
                                 android:textColor="@android:color/white"
                                 android:text="Lanjut"/>
-
                         </LinearLayout>
-
                     </LinearLayout>
-
                 </moe.feng.common.stepperview.VerticalStepperItemView>
 
                 <moe.feng.common.stepperview.VerticalStepperItemView
@@ -202,156 +372,46 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     app:step_index="2"
+                    app:step_summary_done="Cek kembali jika diragukan"
                     app:step_activated_color="@color/bg_screen3"
-                    app:step_title="Data Anak">
+                    app:step_title="Upload KTP">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
                         android:orientation="vertical">
 
-                        <LinearLayout
+                        <Button
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:paddingRight="10dp"
-                                android:tint="@color/colorAccent"
-                                android:src="@drawable/ic_person_pin_black_24dp" />
-
-                            <android.support.design.widget.TextInputLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                app:passwordToggleEnabled="true">
-
-                                <android.support.design.widget.TextInputEditText
-                                    android:id="@+id/edNamaAnak"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:backgroundTintMode="@color/colorAccent"
-                                    android:hint="Nama Anak"
-                                    android:textSize="12dp"
-                                    android:inputType="textAutoComplete"/>
-
-                            </android.support.design.widget.TextInputLayout>
-
-                        </LinearLayout>
-                        <LinearLayout
+                            android:layout_height="35dp"
+                            android:textAllCaps="false"
+                            android:textColor="#FFF"
+                            android:id="@+id/uploadKtp"
+                            android:background="@color/bg_screen3"
+                            android:text="Upload Ktp"/>
+                        <ImageView
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:paddingRight="10dp"
-                                android:tint="@color/colorAccent"
-                                android:src="@drawable/ic_date_range_black_24dp" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="50dp"
-                                android:id="@+id/tglan">
-                            <android.support.design.widget.TextInputLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                app:passwordToggleEnabled="true">
-
-                                <android.support.design.widget.TextInputEditText
-                                    android:id="@+id/edTgl"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:backgroundTintMode="@color/colorAccent"
-                                    android:hint="Tanggal Lahir Anak"
-                                    android:textSize="12dp"
-                                    android:text="--Pilih Tanggal--"
-                                    android:enabled="false"
-                                    android:inputType="date"/>
-
-                            </android.support.design.widget.TextInputLayout>
-                            </LinearLayout>
-
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:paddingRight="10dp"
-                                android:tint="@color/colorAccent"
-                                android:src="@drawable/ic_phone_black_24dp" />
-
-                            <android.support.design.widget.TextInputLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                app:passwordToggleEnabled="true">
-
-                                <android.support.design.widget.TextInputEditText
-                                    android:id="@+id/edTlp"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:backgroundTintMode="@color/colorAccent"
-                                    android:hint="No Telpon"
-                                    android:textSize="12dp"
-                                    android:inputType="number"/>
-
-                            </android.support.design.widget.TextInputLayout>
-
-
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="30dp"
-                            android:gravity="center"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:paddingRight="10dp"
-                                android:tint="@color/colorAccent"
-                                android:src="@drawable/ic_lock_black_24dp" />
-
-                            <android.support.design.widget.TextInputLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                app:passwordToggleEnabled="true">
-
-                                <android.support.design.widget.TextInputEditText
-                                    android:id="@+id/edPass"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:backgroundTintMode="@color/colorAccent"
-                                    android:hint="Password"
-                                    android:textSize="12dp"
-                                    android:inputType="textPassword"/>
-
-                            </android.support.design.widget.TextInputLayout>
-
-                        </LinearLayout>
+                            android:layout_height="150dp"
+                            android:layout_gravity="center"
+                            android:visibility="gone"
+                            android:layout_marginTop="10dp"
+                            android:id="@+id/imgKtp"/>
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
                             android:orientation="horizontal">
+
                             <Button
-                                android:layout_width="match_parent"
+                                android:id="@+id/button_next_1"
+                                android:layout_width="100dp"
                                 android:layout_height="35dp"
-                                android:text="Registrasi"
-                                android:textColor="#fff"
                                 android:textAllCaps="false"
+                                android:drawableRight="@drawable/ic_exit_to_app_black_24dp"
                                 android:background="@color/bg_screen3"
-                                android:id="@+id/btnRegis"/>
+                                android:textColor="@android:color/white"
+                                android:text="Lanjut"/>
 
                             <Button
                                 android:id="@+id/button_prev_1"
@@ -363,35 +423,6 @@
                                 android:background="@color/bg_screen3"
                                 android:textAllCaps="false" />
                         </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
-                            android:visibility="gone"
-                            android:orientation="horizontal">
-
-                            <Button
-                                android:id="@+id/button_next_1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:backgroundTint="@color/material_blue_500"
-                                android:textColor="@android:color/white"
-                                android:text="@android:string/ok"/>
-
-
-                            <Button
-                                android:id="@+id/button_test_error"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="8dp"
-                                android:backgroundTint="@color/material_red_500"
-                                android:textColor="@android:color/white"
-                                android:text="Set Step 1 Error Text"
-                                tools:ignore="RtlCompat" />
-
-                        </LinearLayout>
-
                     </LinearLayout>
 
                 </moe.feng.common.stepperview.VerticalStepperItemView>
@@ -402,9 +433,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     app:step_index="3"
-                    android:visibility="gone"
-                    app:step_title="Step 3"
-                    app:step_summary="Last step"
+                    app:step_title="Upload KK (Kartu Keluarga)"
+                    app:step_activated_color="@color/bg_screen3"
                     app:step_summary_done="Last step. Done"
                     app:step_is_last="true">
 
@@ -412,62 +442,61 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="12dp"
-                            android:text="step 2"/>
-
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:textAllCaps="false"
+                            android:layout_marginTop="5dp"
+                            android:textColor="#FFF"
+                            android:id="@+id/uploadKk"
+                            android:background="@color/bg_screen3"
+                            android:text="Upload KK"/>
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_height="150dp"
+                            android:layout_marginTop="10dp"
+                            android:visibility="gone"
+                            android:id="@+id/imgKK"/>
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:layout_marginTop="10dp"
                             android:orientation="horizontal">
-
                             <Button
-                                android:id="@+id/button_next_2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:backgroundTint="@color/material_blue_500"
+                                android:id="@+id/btnRegistrasi"
+                                android:layout_width="160dp"
+                                android:layout_height="35dp"
+                                android:textAllCaps="false"
+                                android:background="@color/bg_screen3"
                                 android:textColor="@android:color/white"
-                                android:text="@android:string/ok"/>
+                                android:text="Registrasi"/>
 
                             <Button
                                 android:id="@+id/button_prev_2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="160dp"
+                                android:layout_height="35dp"
                                 android:layout_marginStart="8dp"
-                                android:text="@android:string/cancel"
-                                tools:ignore="RtlCompat" />
-
+                                android:text="Kembali"
+                                android:textColor="#FFF"
+                                android:background="@color/bg_screen3"
+                                android:textAllCaps="false" />
                         </LinearLayout>
 
+                        <ProgressBar
+                            android:id="@+id/progress_login"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:theme="@style/AppTheme.WhiteAccent"
+                            android:layout_marginTop="5dp" />
                     </LinearLayout>
 
+
                 </moe.feng.common.stepperview.VerticalStepperItemView>
-
-                <Button
-                    android:id="@+id/btn_change_point_color"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="24dp"
-                    android:visibility="gone"
-                    android:text="Change point activated color"/>
-
-                <Button
-                    android:id="@+id/btn_change_done_icon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:visibility="gone"
-                    android:text="Change point done icon"
-                    android:layout_marginLeft="24dp" />
-
             </LinearLayout>
-
         </android.support.v4.widget.NestedScrollView>
-
     </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>
