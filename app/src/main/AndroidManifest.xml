@@ -20,7 +20,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Testdoang"></activity>
+        <activity android:name=".petani.Dashboard"></activity>
+        <activity android:name=".petani.ProfileFragment" />
+        <activity android:name=".Testdoang" />
         <activity android:name=".petani.MenuUtama" />
         <activity android:name=".ListData" />
         <activity android:name=".users.registrasi.Regist" />

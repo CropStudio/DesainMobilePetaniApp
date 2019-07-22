@@ -4,7 +4,7 @@ package com.example.app4g.server;
 
 public class Config_URL
 {
-    public static String base_URL           = "http://192.168.43.156:8400/api";
+    public static String base_URL           = "http://172.32.1.20:8400/api";
 //    public static String base_URL           = "http://192.168.43.156/az-zahra-api/public";
 
     //users
