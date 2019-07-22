@@ -187,7 +187,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingLeft="20dp"
-                                android:text="1234567890"/>
+                                android:text="-"/>
                         </LinearLayout>
                     </LinearLayout>
 
@@ -220,7 +220,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingLeft="20dp"
-                            android:text="089501659383"/>
+                            android:text="-"/>
                         </LinearLayout>
                     </LinearLayout>
 
@@ -253,7 +253,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingLeft="20dp"
-                            android:text="Bumi Asih"/>
+                            android:text="-"/>
                         </LinearLayout>
                     </LinearLayout>
 
@@ -286,7 +286,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingLeft="20dp"
-                                android:text="Lampung Selatan, Natar, Bumisari"/>
+                                android:text="-"/>
                         </LinearLayout>
                     </LinearLayout>
 

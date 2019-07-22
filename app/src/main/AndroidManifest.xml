@@ -20,14 +20,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".petani.Dashboard"></activity>
-        <activity android:name=".petani.ProfileFragment" />
         <activity android:name=".Testdoang" />
-        <activity android:name=".petani.MenuUtama" />
-        <activity android:name=".ListData" />
-        <activity android:name=".users.registrasi.Regist" />
-        <activity android:name=".users.login.Login" />
-        <activity android:name=".PagerActivity">
+        <activity android:name=".petani.MenuUtama"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ListData"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".users.registrasi.Regist"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".users.login.Login"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".PagerActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

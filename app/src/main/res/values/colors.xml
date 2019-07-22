@@ -117,4 +117,7 @@
     <color name="material_deep_purple_a200">#7C4DFF</color>
 
     <color name="material_lime_a200">#EEFF41</color>
+
+    <color name="colorFAB1">#2196F3</color>
+    <color name="colorFAB2">#E040FB</color>
 </resources>
