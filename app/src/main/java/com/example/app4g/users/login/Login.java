@@ -5,14 +5,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.bumptech.glide.request.RequestOptions;
-import com.example.app4g.MenuUtama;
+import com.example.app4g.petani.MenuUtama;
 import com.example.app4g.R;
 import com.example.app4g.session.SessionManager;
 import com.example.app4g.users.login.presenter.ILoginPresenter;
@@ -209,40 +208,39 @@ public class Login extends AppCompatActivity implements BaseSliderView.OnSliderC
     public void onLoginResult(Boolean result, String msg) {
         loginPresenter.setProgressBarVisiblity(View.GONE);
         if (result){
-//            try {
-//                JSONObject jObj     = new JSONObject(msg);
-//                strId       = jObj.getString("id");
-//                strNik      = jObj.getString("nik");
-//                strNotelp   = jObj.getString("no_hp");
-//                strNama     = jObj.getString("nama");
-//                strRole     = jObj.getString("role");
-//                strToken    = jObj.getString("token");
-//                strKtp      = jObj.getString("ktp");
-//                strKk       = jObj.getString("kartukeluarga");
-//
-//                storeRegIdinSharedPref(getApplicationContext(),strId,strNik,strNotelp, strNama, strRole, strToken, strKtp, strKk);
-//
-//                if(strRole.equals("2")){
-//                    session.setLogin(true);
-//                    Intent a = new Intent(Login.this, MenuUtama.class);
-//                    a.putExtra("id", strId);
-//                    a.putExtra("nik", strNik);
-//                    a.putExtra("notelp", strNotelp);
-//                    a.putExtra("nama", strNama);
-//                    a.putExtra("role",strRole);
-//                    a.putExtra("token",strToken);
-//                    a.putExtra("ktp", strKtp);
-//                    a.putExtra("kk", strKk);
-//                    startActivity(a);
-//                    finish();
-//                }else {
-//                    Toast.makeText(getApplicationContext(), "Anda tidak diizinkan mengakses aplikasi ini", Toast.LENGTH_LONG).show();
-//                }
-//
-//            }catch (JSONException e){
-//                e.printStackTrace();
-//            }
-            Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+            try {
+                JSONObject jObj     = new JSONObject(msg);
+                strId       = jObj.getString("id");
+                strNik      = jObj.getString("nik");
+                strNotelp   = jObj.getString("no_hp");
+                strNama     = jObj.getString("nama");
+                strRole     = jObj.getString("role");
+                strToken    = jObj.getString("token");
+                strKtp      = jObj.getString("ktp");
+                strKk       = jObj.getString("kartukeluarga");
+
+                storeRegIdinSharedPref(getApplicationContext(),strId,strNik,strNotelp, strNama, strRole, strToken, strKtp, strKk);
+
+                if(strRole.equals("2")){
+                    session.setLogin(true);
+                    Intent a = new Intent(Login.this, MenuUtama.class);
+                    a.putExtra("id", strId);
+                    a.putExtra("nik", strNik);
+                    a.putExtra("notelp", strNotelp);
+                    a.putExtra("nama", strNama);
+                    a.putExtra("role",strRole);
+                    a.putExtra("token",strToken);
+                    a.putExtra("ktp", strKtp);
+                    a.putExtra("kk", strKk);
+                    startActivity(a);
+                    finish();
+                }else {
+                    Toast.makeText(getApplicationContext(), "Anda tidak diizinkan mengakses aplikasi ini", Toast.LENGTH_LONG).show();
+                }
+
+            }catch (JSONException e){
+                e.printStackTrace();
+            }
         }else {
             Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
         }

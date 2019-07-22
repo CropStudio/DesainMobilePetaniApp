@@ -21,7 +21,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".Testdoang"></activity>
-        <activity android:name=".MenuUtama" />
+        <activity android:name=".petani.MenuUtama" />
         <activity android:name=".ListData" />
         <activity android:name=".users.registrasi.Regist" />
         <activity android:name=".users.login.Login" />

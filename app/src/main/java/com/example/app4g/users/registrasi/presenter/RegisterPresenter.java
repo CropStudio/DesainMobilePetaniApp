@@ -129,8 +129,8 @@ public class RegisterPresenter implements IRegisterPresenter {
             protected Map<String, DataPart> getByteData() {
                 Map<String, DataPart> params = new HashMap<>();
                 long imagename = System.currentTimeMillis();
-                params.put("fotoktp", new DataPart(imagename + ".png", getFileDataFromDrawable(ktps)));
-                params.put("fotokk", new DataPart(imagename + ".png", getFileDataFromDrawable(kk)));
+                params.put("fotoktp", new DataPart(imagename + ".jpg", getFileDataFromDrawable(ktps)));
+                params.put("fotokk", new DataPart(imagename + ".jpg", getFileDataFromDrawable(kk)));
                 return params;
             }
         };
@@ -146,7 +146,7 @@ public class RegisterPresenter implements IRegisterPresenter {
 
     public byte[] getFileDataFromDrawable(Bitmap bitmap) {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 80, byteArrayOutputStream);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 20, byteArrayOutputStream);
         return byteArrayOutputStream.toByteArray();
     }
 }
