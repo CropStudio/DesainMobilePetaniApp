@@ -8,56 +8,6 @@
     tools:context=".petani.Dashboard">
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:weightSum="2"
-        android:background="@color/c_white"
-        tools:ignore="MissingConstraints">
-
-        <LinearLayout
-            android:id="@+id/toUp"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:weightSum="2"
-            android:background="@color/c_white"
-            tools:ignore="MissingConstraints">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="1dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:src="@drawable/lampung_coa"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="0dp"
-                    android:text="KPB"
-                    android:textSize="18sp" />
-            </LinearLayout>
-        </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:id="@+id/toUp1"
-            android:background="@color/bg_screen3"/>
-    </LinearLayout>
-
-    <LinearLayout
         android:orientation="vertical"
         android:weightSum="20"
         android:gravity="center"
@@ -232,20 +182,102 @@
             </android.support.v7.widget.CardView>
         </LinearLayout>
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:weightSum="2"
+        android:background="@color/c_white"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:id="@+id/toUp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:background="@color/c_white"
+            tools:ignore="MissingConstraints">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/lampung_coa"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="0dp"
+                    android:text="KPB"
+                    android:textSize="18sp" />
+            </LinearLayout>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:id="@+id/toUp1"
+            android:background="@color/bg_screen3"/>
+    </LinearLayout>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="bottom|end">
+        android:orientation="vertical"
+        android:layout_marginTop="1dp"
+        android:layout_gravity="top|end">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="bottom|end">
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:backgroundTint="@color/c_white"
+                app:elevation="6dp"
+                android:scaleY="0.8"
+                android:scaleX="0.8"
+                app:pressedTranslationZ="12dp"
+                android:tint="@color/bg_screen3"
+                android:src="@drawable/ic_menu_black_24dp" />
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fabs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:elevation="6dp"
+                android:scaleY="0.8"
+                android:scaleX="0.8"
+                android:visibility="gone"
+                app:backgroundTint="@color/c_white"
+                android:layout_marginBottom="20dp"
+                app:pressedTranslationZ="12dp"
+                android:tint="@color/red"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/ic_close_black_24dp" />
+        </LinearLayout>
         <LinearLayout
             android:id="@+id/linearFab2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:visibility="invisible"
-            android:layout_marginBottom="20dp"
-            android:layout_gravity="bottom|end"
-            android:layout_marginRight="@dimen/fab_margin">
+            android:layout_marginTop="-20dp"
+            android:layout_gravity="bottom|end">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -270,10 +302,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginBottom="20dp"
+            android:layout_marginTop="-5dp"
             android:visibility="invisible"
-            android:layout_gravity="bottom|end"
-            android:layout_marginRight="@dimen/fab_margin">
+            android:layout_gravity="bottom|end">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -293,27 +324,6 @@
                 app:pressedTranslationZ="12dp"
                 android:src="@drawable/exit" />
         </LinearLayout>
-
-        <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:elevation="6dp"
-        app:backgroundTint="@color/colorAccent"
-        android:layout_marginBottom="20dp"
-        app:pressedTranslationZ="12dp"
-            android:layout_marginRight="5dp"
-        android:src="@drawable/ic_menu_black_24dp" />
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fabs"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:elevation="6dp"
-            app:backgroundTint="@color/red"
-            android:layout_marginBottom="20dp"
-            app:pressedTranslationZ="12dp"
-            android:layout_marginRight="5dp"
-            android:visibility="gone"
-            android:src="@drawable/ic_close_black_24dp" />
     </LinearLayout>
+
 </android.support.design.widget.CoordinatorLayout>
