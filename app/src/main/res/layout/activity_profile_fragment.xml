@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/layout"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:background="#f0eff3"
     android:orientation="vertical">
@@ -61,7 +62,6 @@
                        <ImageView
                            android:layout_width="40dp"
                            android:layout_height="40dp"
-                           android:onClick="takePicture"
                            android:src="@drawable/ic_add_black_24dp"/>
                    </LinearLayout>
                     <TextView
