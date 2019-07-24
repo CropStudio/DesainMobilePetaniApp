@@ -50,7 +50,7 @@ public class Login extends AppCompatActivity implements BaseSliderView.OnSliderC
     SharedPreferences prefs;
     private SessionManager session;
 
-    String strId, strNik, strNotelp, strNama, strRole, strToken, strKtp, strKk;
+    String strId, strNik, strNotelp, strNama, strRole, strToken, strKtp, strKk, strPotoPropil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +74,7 @@ public class Login extends AppCompatActivity implements BaseSliderView.OnSliderC
         strToken    = prefs.getString("token", "");
         strKtp      = prefs.getString("ktp", "");
         strKk       = prefs.getString("kk","");
+        strPotoPropil=prefs.getString("pp","");
 
 
         if (session.isLoggedIn()){
@@ -87,6 +88,7 @@ public class Login extends AppCompatActivity implements BaseSliderView.OnSliderC
                 a.putExtra("token",strToken);
                 a.putExtra("ktp", strKtp);
                 a.putExtra("kk", strKk);
+                a.putExtra("pp", strPotoPropil);
                 startActivity(a);
                 finish();
             }else {
@@ -218,8 +220,9 @@ public class Login extends AppCompatActivity implements BaseSliderView.OnSliderC
                 strToken    = jObj.getString("token");
                 strKtp      = jObj.getString("ktp");
                 strKk       = jObj.getString("kartukeluarga");
+                strPotoPropil=jObj.getString("poto_profile");
 
-                storeRegIdinSharedPref(getApplicationContext(),strId,strNik,strNotelp, strNama, strRole, strToken, strKtp, strKk);
+                storeRegIdinSharedPref(getApplicationContext(),strId,strNik,strNotelp, strNama, strRole, strToken, strKtp, strKk, strPotoPropil);
 
                 if(strRole.equals("2")){
                     session.setLogin(true);
@@ -232,6 +235,7 @@ public class Login extends AppCompatActivity implements BaseSliderView.OnSliderC
                     a.putExtra("token",strToken);
                     a.putExtra("ktp", strKtp);
                     a.putExtra("kk", strKk);
+                    a.putExtra("pp", strPotoPropil);
                     startActivity(a);
                     finish();
                 }else {
@@ -252,7 +256,7 @@ public class Login extends AppCompatActivity implements BaseSliderView.OnSliderC
     }
 
     private void storeRegIdinSharedPref(Context context, String strId, String strNik, String strNotelp, String strNama,
-                                        String strRole, String strToken, String strKtp, String strKk) {
+                                        String strRole, String strToken, String strKtp, String strKk, String pp) {
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString("id", strId);
         editor.putString("nik", strNik);
@@ -262,6 +266,7 @@ public class Login extends AppCompatActivity implements BaseSliderView.OnSliderC
         editor.putString("token", strToken);
         editor.putString("ktp", strKtp);
         editor.putString("kk", strKk);
+        editor.putString("pp", pp);
         editor.commit();
     }
 }
