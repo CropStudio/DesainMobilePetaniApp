@@ -20,16 +20,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".InputDataAnak"></activity>
+        <activity android:name=".ListDataAnak" />
         <activity android:name=".Testdoang" />
-        <activity android:name=".petani.MenuUtama"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ListData"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".users.registrasi.Regist"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".users.login.Login"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".PagerActivity"
+        <activity
+            android:name=".petani.MenuUtama"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ListData"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".users.registrasi.Regist"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".users.login.Login"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PagerActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

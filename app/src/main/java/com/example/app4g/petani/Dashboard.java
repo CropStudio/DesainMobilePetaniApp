@@ -18,6 +18,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 
+import com.example.app4g.ListDataAnak;
 import com.example.app4g.R;
 import com.example.app4g.session.SessionManager;
 import com.example.app4g.users.login.Login;
@@ -122,6 +123,38 @@ public class Dashboard extends Fragment {
         })
                 .show();
     }
+    @OnClick(R.id.linearFab2)
+    void dataanak(){
+//        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+//        builder.setTitle(Html.fromHtml("<font color='#009688'><b>Yakin ingin keluar ?</b></font>"))
+//                .setCancelable(false)
+//                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int id) {
+//                        keluar();
+//                        session.setLogin(false);
+//                        session.setSkip(false);
+//                        session.setSessid(0);
+                        Intent intent = new Intent(getActivity(), ListDataAnak.class);
+                        startActivity(intent);
+                        getActivity().finish();
+                    }
+//                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//            @SuppressLint("RestrictedApi")
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                builder.setCancelable(true);
+//                fab.setVisibility(View.VISIBLE);
+//                fabs.setVisibility(View.GONE);
+//                fab.startAnimation(rotate_backward);
+//                linearFab1.startAnimation(fab_close);
+//                linearFab2.startAnimation(fab_close);
+//                linearFab1.setClickable(false);
+//                linearFab2.setClickable(false);
+//                isFabOpen = false;
+//            }
+//        })
+//                .show();
+
 
     @SuppressLint("RestrictedApi")
     public void animateFAB(){
