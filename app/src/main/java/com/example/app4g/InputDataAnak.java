@@ -14,7 +14,7 @@ public class InputDataAnak extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_input_data_anak);
         getSupportActionBar().hide();
-    }
+     }
     @Override
     public void onBackPressed() {
         Intent a = new Intent(InputDataAnak.this, ListDataAnak.class);

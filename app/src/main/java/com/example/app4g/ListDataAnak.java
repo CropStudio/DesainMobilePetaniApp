@@ -32,7 +32,7 @@ public class ListDataAnak extends AppCompatActivity {
         Intent a = new Intent(ListDataAnak.this, MenuUtama.class);
         startActivity(a);
         finish();
-    }
+     }
 
     @OnClick(R.id.btnTambahDataAnak)
     void btnTambahDataAnak() {
