@@ -50,7 +50,7 @@ public class PagerActivity extends AppCompatActivity {
         }
 
         setContentView(R.layout.activity_pager);
-        getSupportActionBar().hide();
+//        getSupportActionBar().hide();
 
         viewPager = findViewById(R.id.view_pager);
         dotsLayout = findViewById(R.id.layoutDots);

@@ -8,6 +8,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 
@@ -20,7 +21,7 @@ public class MenuUtama extends AppCompatActivity {
     public SharedPreferences prefs;
     public SessionManager session;
 
-    String strId, strNik, strNotelp, strNama, strRole, strToken, strKtp, strKk;
+    String strId, strNik, strNotelp, strNama, strRole, strToken, strKtp, strKk, strPotoPropil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +78,7 @@ public class MenuUtama extends AppCompatActivity {
             strToken    = prefs.getString("token", "");
             strKtp      = prefs.getString("ktp", "");
             strKk       = prefs.getString("kk","");
+            strPotoPropil=prefs.getString("pp","");
 
         }else{
             Intent a = new Intent(getApplicationContext(), Login.class);

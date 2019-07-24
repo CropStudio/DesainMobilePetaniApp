@@ -61,7 +61,7 @@ public class Dashboard extends Fragment {
         return view;
     }
 
-//    @OnClick(R.id.linearExit)
+//    @OnClick(R.id.linearFab1)
 //    void keluarApps(){
 //        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 //        builder.setTitle(Html.fromHtml("<font color='#009688'><b>Yakin ingin keluar ?</b></font>"))
