@@ -8,7 +8,6 @@ import android.content.SharedPreferences;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -18,8 +17,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 
-import com.example.app4g.ListDataAnak;
 import com.example.app4g.R;
+import com.example.app4g.petani.anak.ListDataAnak;
 import com.example.app4g.session.SessionManager;
 import com.example.app4g.users.login.Login;
 

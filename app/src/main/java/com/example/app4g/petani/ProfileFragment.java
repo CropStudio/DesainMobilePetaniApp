@@ -1,10 +1,13 @@
 package com.example.app4g.petani;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
@@ -21,6 +24,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -94,6 +98,7 @@ public class ProfileFragment extends Fragment {
 
     @BindView(R.id.layout)
     LinearLayout layout;
+
     RetryPolicy policy = new DefaultRetryPolicy(5000,
             DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
             DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
@@ -102,6 +107,7 @@ public class ProfileFragment extends Fragment {
     String mCurrentPhotoPath;
 
     private RequestQueue rQueue;
+    Dialog myDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -118,8 +124,54 @@ public class ProfileFragment extends Fragment {
                 e.printStackTrace();
             }
         }
+        myDialog = new Dialog(getActivity());
         isLogin();
         return view;
+    }
+
+    @OnClick(R.id.relativeclick)
+    void clickDetailImage(){
+        myDialog.setContentView(R.layout.view_image);
+        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+
+        ImageView img = (ImageView) myDialog.findViewById(R.id.imageView);
+
+        if (strPotoPropil.length() == 4){
+            Picasso.get().load(Config_URL.fotoProfilUrl+"noimage.png")
+                    .into(img, new com.squareup.picasso.Callback() {
+                        @Override
+                        public void onSuccess() {
+                            if (prgBar != null) {
+                                prgBar.setVisibility(View.GONE);
+                            }
+                        }
+
+                        @Override
+                        public void onError(Exception e) {
+                        }
+
+                    });
+        }else {
+            Picasso.get().load(Config_URL.fotoProfilUrl+
+                    strPotoPropil)
+                    .into(img, new com.squareup.picasso.Callback() {
+                        @Override
+                        public void onSuccess() {
+                            if (prgBar != null) {
+                                prgBar.setVisibility(View.GONE);
+                            }
+                        }
+
+                        @Override
+                        public void onError(Exception e) {
+                        }
+
+                    });
+        }
+
+        myDialog.show();
+
     }
 
     @Override

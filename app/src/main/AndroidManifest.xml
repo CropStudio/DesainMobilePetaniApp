@@ -20,8 +20,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".InputDataAnak"></activity>
-        <activity android:name=".ListDataAnak" />
+        <activity android:name=".petani.anak.InputDataAnak"></activity>
+        <activity android:name=".petani.anak.ListDataAnak" />
         <activity android:name=".Testdoang" />
         <activity
             android:name=".petani.MenuUtama"
