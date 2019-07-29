@@ -47,6 +47,7 @@
                         <ProgressBar
                             android:id="@+id/progress_login"
                             android:layout_width="match_parent"
+                            android:theme="@style/Nganu"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="55dp" />
                     </RelativeLayout>

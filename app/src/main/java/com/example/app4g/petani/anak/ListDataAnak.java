@@ -1,32 +1,59 @@
 package com.example.app4g.petani.anak;
 
+import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Handler;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.app4g.ListData;
 import com.example.app4g.R;
 import com.example.app4g.adapter.AdapterAnak;
 import com.example.app4g.data.DataAnak;
 import com.example.app4g.petani.MenuUtama;
+import com.example.app4g.petani.anak.model.AnakModel;
 import com.example.app4g.server.AppController;
 import com.example.app4g.server.Config_URL;
 import com.example.app4g.session.SessionManager;
@@ -36,8 +63,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 import butterknife.ButterKnife;
 
@@ -57,63 +89,57 @@ public class ListDataAnak extends AppCompatActivity {
     ArrayList<DataAnak> newsList = new ArrayList<DataAnak>();
     AdapterAnak adapter;
 
+    Dialog myDialog;
+    DatePickerDialog datePickerDialog;
+    SimpleDateFormat dateFormatter;
+    TextView txtTgl;
+
+    @BindView(R.id.layout)
+    RelativeLayout layout;
+
+    Handler handler;
+
+    RetryPolicy policy = new DefaultRetryPolicy(5000,
+            DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+            DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_data_anak);
         ButterKnife.bind(this);
         getSupportActionBar().hide(); //untuk menghilangkan action bar yg di atas
+        dateFormatter = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
         pDialog = new ProgressDialog(this);
+        myDialog = new Dialog(this);
         pDialog.setCancelable(false);
         newsList.clear();
         adapter = new AdapterAnak(this, newsList);
         list.setAdapter(adapter);
-        //list.setEmptyView(view.findViewById(R.id.textNodata));
+        list.setEmptyView(findViewById(R.id.textNodata));
 
         prefs = getSharedPreferences(
                 "UserDetails",
                 Context.MODE_PRIVATE);
         isLogin();
         getNamaAnak();
-
+        updateData();
     }
 
-    private void getData() {
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
-
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Config_URL.dataAnak+strId, new Response.Listener<JSONArray>() {
+    public void tanggalan(){
+        Calendar newCalendar = Calendar.getInstance();
+        datePickerDialog = new DatePickerDialog(myDialog.getContext(), new DatePickerDialog.OnDateSetListener() {
             @Override
-            public void onResponse(JSONArray response) {
-                for (int i = 0; i < response.length(); i++) {
-                    try {
-                        JSONObject jsonObject = response.getJSONObject(i);
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
 
-                        DataAnak anak = new DataAnak();
-                        anak.setNama(jsonObject.getString("nama"));
-                        anak.setJenisKelami(jsonObject.getString("jenis_kelamin"));
-                        anak.setTglLahir(jsonObject.getString("tanggal_lahir"));
-                        newsList.add(anak);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                        progressDialog.dismiss();
-                    }
-                }
-                adapter.notifyDataSetChanged();
-                progressDialog.dismiss();
+                Calendar newDate = Calendar.getInstance();
+                newDate.set(year, monthOfYear, dayOfMonth);
+                txtTgl.setText(dateFormatter.format(newDate.getTime()));
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("Volley", error.toString());
-                progressDialog.dismiss();
-            }
-        });
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(jsonArrayRequest);
+
+        },newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
+        datePickerDialog.show();
     }
-
     // Fungsi get JSON Mahasiswa
     private void getNamaAnak() {
 
@@ -146,7 +172,7 @@ public class ListDataAnak extends AppCompatActivity {
                                     anak.setNama(jsonObject.getString("nama"));
                                     anak.setJenisKelami(jsonObject.getString("jenis_kelamin"));
                                     anak.setTglLahir(jsonObject.getString("tanggal_lahir"));
-
+                                    anak.setIdAnak(jsonObject.getString("id"));
                                     newsList.add(anak);
                                 }
                             }
@@ -198,7 +224,7 @@ public class ListDataAnak extends AppCompatActivity {
         finish();
      }
 
-    @OnClick(R.id.btnTambahDataAnak)
+    @OnClick(R.id.fabTambahData)
     void btnTambahDataAnak() {
         Intent a = new Intent(ListDataAnak.this, InputDataAnak.class);
         startActivity(a);
@@ -235,5 +261,263 @@ public class ListDataAnak extends AppCompatActivity {
     private void hideDialog() {
         if (pDialog.isShowing())
             pDialog.dismiss();
+    }
+
+    public void updateData(){
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+
+                // TODO Auto-generated method stub
+                //Toast.makeText(getApplicationContext(), newsList.get(position).getNama(), Toast.LENGTH_LONG).show();
+                myDialog.setContentView(R.layout.update_data_anak);
+                handler=new Handler();
+                final EditText edAnak = (EditText) myDialog.findViewById(R.id.edNamaAnak);
+                final RadioButton[] radioLaki = {(RadioButton) myDialog.findViewById(R.id.rb_laki)};
+                RadioButton radioPerempuan = (RadioButton) myDialog.findViewById(R.id.rb_perempuan);
+                final RadioGroup radioGroupGender = (RadioGroup) myDialog.findViewById(R.id.rg_gender);
+                LinearLayout tglan = (LinearLayout) myDialog.findViewById(R.id.tglan);
+                Button btnSubmit = (Button) myDialog.findViewById(R.id.submitAnak);
+                Button btnHapus = (Button) myDialog.findViewById(R.id.hapusAnak);
+                LinearLayout closed = (LinearLayout) myDialog.findViewById(R.id.close);
+
+                final ProgressBar prgBar = (ProgressBar) myDialog.findViewById(R.id.progress_login);
+                prgBar.setVisibility(View.GONE);
+
+                txtTgl = (TextView) myDialog.findViewById(R.id.edTgl);
+                txtTgl.setText(newsList.get(position).getTglLahir());
+                if(newsList.get(position).getJenisKelami().equals("Laki-Laki")){
+                    radioLaki[0].setChecked(true);
+                }else {
+                    radioPerempuan.setChecked(true);
+                }
+                //ButterKnife.bind(myDialog);
+                edAnak.setText(newsList.get(position).getNama());
+
+                tglan.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        tanggalan();
+                    }
+                });
+
+                //update function
+                btnSubmit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int selectedId = radioGroupGender.getCheckedRadioButtonId();
+                        String namaAnak = edAnak.getText().toString();
+                        if(namaAnak.isEmpty()){
+                            snacBars("Nama anak dibutuhkan");
+                        } else if (selectedId <= 0){
+                            snacBars("Jenis kelamin anak dibutuhkan");
+                        }else {
+                            prgBar.setVisibility(View.VISIBLE);
+                            radioLaki[0] = (RadioButton) radioGroupGender.findViewById(selectedId);
+                            final String genders = (String) radioLaki[0].getText().toString();
+                            String tglLahir = txtTgl.getText().toString();
+                            Log.v("Data input", namaAnak+" "+genders+" "+tglLahir+" "+strId);
+                            if(tglLahir.equals("yyyy-MM-dd")){
+                                snacBars("Tanggal lahir anak dibutuhkan");
+                            }else {
+                                String tag_string_req = "req";
+                                StringRequest strReq = new StringRequest(Request.Method.PUT,
+                                        Config_URL.anak+"/"+newsList.get(position).getIdAnak(), new Response.Listener<String>() {
+                                    @Override
+                                    public void onResponse(String response) {
+                                        Log.d("msg", "Response: " + response.toString());
+                                        prgBar.setVisibility(View.GONE);
+                                        try {
+                                            final JSONObject jObj = new JSONObject(response);
+                                            final boolean status = jObj.getBoolean("status");
+
+                                            handler.postDelayed(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    if(status == true){
+                                                        String msg = null;
+                                                        try {
+                                                            msg = jObj.getString("message");
+                                                            Intent a = new Intent(ListDataAnak.this, ListDataAnak.class);
+                                                            startActivity(a);
+                                                            finish();
+                                                            Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
+                                                        } catch (JSONException e) {
+                                                            e.printStackTrace();
+                                                        }
+                                                    }else {
+                                                        String msg = null;
+                                                        try {
+                                                            msg = jObj.getString("message");
+                                                            Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
+                                                        } catch (JSONException e) {
+                                                            e.printStackTrace();
+                                                        }
+                                                        //iInputAnakView.onInputResult(status, msg);
+                                                    }
+                                                }
+                                            }, 1000);
+
+                                        }catch (JSONException e){
+                                            //JSON error
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                }, new Response.ErrorListener(){
+
+                                    @Override
+                                    public void onErrorResponse(VolleyError error){
+                                        Log.e("msg", "Login Error : " + error.getMessage());
+                                        error.printStackTrace();
+                                        //iInputAnakView.onInputResult(false, "Maaf server tidak meresponse atau periksa koneksi internet anda");
+                                        prgBar.setVisibility(View.GONE);
+                                    }
+                                }){
+
+                                    @Override
+                                    protected Map<String, String> getParams(){
+                                        Map<String, String> params = new HashMap<String, String>();
+                                        params.put("nama", edAnak.getText().toString());
+                                        params.put("tanggal_lahir", txtTgl.getText().toString());
+                                        params.put("jenis_kelamin", genders);
+                                        params.put("id_user", strId);
+                                        return params;
+                                    }
+                                };
+                                strReq.setRetryPolicy(policy);
+                                AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
+
+                            }
+                        }
+                    }
+                });
+
+                //hapus function
+                btnHapus.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final int selectedId = radioGroupGender.getCheckedRadioButtonId();
+                        final String namaAnak = edAnak.getText().toString();
+                        if(namaAnak.isEmpty()){
+                            snacBars("Nama anak dibutuhkan");
+                        } else if (selectedId <= 0){
+                            snacBars("Jenis kelamin anak dibutuhkan");
+                        }else {
+                            final AlertDialog.Builder builder = new AlertDialog.Builder(myDialog.getContext());
+                            builder.setTitle(Html.fromHtml("<font color='#F44336'><b>Yakin ingin menghapus data anak ?</b></font>"))
+                                    .setIcon(R.drawable.lampung_coa)
+                                    .setCancelable(false)
+                                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            prgBar.setVisibility(View.VISIBLE);
+                                            radioLaki[0] = (RadioButton) radioGroupGender.findViewById(selectedId);
+                                            final String genders = (String) radioLaki[0].getText().toString();
+                                            String tglLahir = txtTgl.getText().toString();
+                                            Log.v("Data input", namaAnak+" "+genders+" "+tglLahir+" "+strId);
+                                            if(tglLahir.equals("yyyy-MM-dd")){
+                                                snacBars("Tanggal lahir anak dibutuhkan");
+                                            }else {
+                                                String tag_string_req = "req";
+                                                StringRequest strReq = new StringRequest(Request.Method.DELETE,
+                                                        Config_URL.anak+"/"+newsList.get(position).getIdAnak(), new Response.Listener<String>() {
+                                                    @Override
+                                                    public void onResponse(String response) {
+                                                        Log.d("msg", "Response: " + response.toString());
+                                                        prgBar.setVisibility(View.GONE);
+                                                        try {
+                                                            final JSONObject jObj = new JSONObject(response);
+                                                            final boolean status = jObj.getBoolean("status");
+
+                                                            handler.postDelayed(new Runnable() {
+                                                                @Override
+                                                                public void run() {
+                                                                    if(status == true){
+                                                                        String msg = null;
+                                                                        try {
+                                                                            msg = jObj.getString("message");
+                                                                            Intent a = new Intent(ListDataAnak.this, ListDataAnak.class);
+                                                                            startActivity(a);
+                                                                            finish();
+                                                                            Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
+                                                                        } catch (JSONException e) {
+                                                                            e.printStackTrace();
+                                                                        }
+                                                                    }else {
+                                                                        String msg = null;
+                                                                        try {
+                                                                            msg = jObj.getString("message");
+                                                                            Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
+                                                                        } catch (JSONException e) {
+                                                                            e.printStackTrace();
+                                                                        }
+                                                                        //iInputAnakView.onInputResult(status, msg);
+                                                                    }
+                                                                }
+                                                            }, 1000);
+
+                                                        }catch (JSONException e){
+                                                            //JSON error
+                                                            e.printStackTrace();
+                                                        }
+                                                    }
+                                                }, new Response.ErrorListener(){
+
+                                                    @Override
+                                                    public void onErrorResponse(VolleyError error){
+                                                        Log.e("msg", "Login Error : " + error.getMessage());
+                                                        error.printStackTrace();
+                                                        //iInputAnakView.onInputResult(false, "Maaf server tidak meresponse atau periksa koneksi internet anda");
+                                                        prgBar.setVisibility(View.GONE);
+                                                    }
+                                                });
+                                                strReq.setRetryPolicy(policy);
+                                                AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
+
+                                            }
+
+                                        }
+                                    }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                @SuppressLint("RestrictedApi")
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    builder.setCancelable(true);
+                                }
+                            })
+                                    .show();
+                        }
+                    }
+                });
+                //delete function
+                closed.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        myDialog.dismiss();
+                    }
+                });
+
+                myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                myDialog.show();
+            }
+        });
+    }
+
+    public void snacBars(String text){
+        Snackbar snackbar = Snackbar.make(layout, text, Snackbar.LENGTH_LONG);
+        View view = snackbar.getView();
+        FrameLayout.LayoutParams params=(FrameLayout.LayoutParams)view.getLayoutParams();
+        params.gravity = Gravity.TOP;
+        view.setBackgroundColor(layout.getResources().getColor(R.color.red));
+        view.setLayoutParams(params);
+        snackbar.show();
+    }
+
+    public void snacBarsGreen(String text){
+        Snackbar snackbar = Snackbar.make(layout, text, Snackbar.LENGTH_LONG);
+        View view = snackbar.getView();
+        FrameLayout.LayoutParams params= (FrameLayout.LayoutParams)view.getLayoutParams();
+        params.gravity = Gravity.TOP;
+        view.setBackgroundColor(layout.getResources().getColor(R.color.bg_screen3));
+        view.setLayoutParams(params);
+        snackbar.show();
     }
 }

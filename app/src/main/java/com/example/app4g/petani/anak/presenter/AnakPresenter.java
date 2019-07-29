@@ -48,7 +48,7 @@ public class AnakPresenter implements IAnakPresenter {
 
     @Override
     public void doAnak(String nama, String tglLahir, String jenisKelamin, String idUser) {
-        checkRegistrasi(nama, tglLahir, jenisKelamin, idUser);
+        checkInsert(nama, tglLahir, jenisKelamin, idUser);
     }
 
     @Override
@@ -56,12 +56,12 @@ public class AnakPresenter implements IAnakPresenter {
         iInputAnakView.onSetProgressBarVisibility(visiblity);
     }
 
-    private void checkRegistrasi(final String nama, final String tglLahir, final String jenisKelamin,final String idUser){
+    private void checkInsert(final String nama, final String tglLahir, final String jenisKelamin,final String idUser){
         user   = new AnakModel(nama, tglLahir, jenisKelamin,idUser);
 
         String tag_string_req = "req";
         StringRequest strReq = new StringRequest(Request.Method.POST,
-                Config_URL.inputAnak, new Response.Listener<String>() {
+                Config_URL.anak, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Log.d("msg", "Response: " + response.toString());

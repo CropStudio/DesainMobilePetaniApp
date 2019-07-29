@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout"
     android:orientation="vertical"
     tools:context=".petani.anak.ListDataAnak">
     <LinearLayout
@@ -36,7 +37,7 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginLeft="10dp"
                     android:src="@drawable/lampung_coa"/>
 
                 <TextView
@@ -45,28 +46,8 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="0dp"
-                    android:text="KPB"
+                    android:text="Data Anak"
                     android:textSize="18sp" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginRight="30dp"
-                android:layout_marginTop="2dp"
-                android:gravity="center">
-                <ImageView
-                    android:id="@+id/btnTambahDataAnak"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:src="@drawable/ic_add_black_48dp_00"
-                    android:background="@drawable/bk_rounded_button"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Tambah Anak"
-                    android:textSize="12sp" />
             </LinearLayout>
         </LinearLayout>
         <View
@@ -78,10 +59,11 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="70dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:orientation="vertical"
+        android:layout_marginBottom="20dp"
         android:layout_height="match_parent">
         <ListView
             android:id="@+id/main_list"
@@ -90,6 +72,40 @@
             android:dividerHeight="0dp"
             android:layout_height="match_parent">
         </ListView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:text="Tidak ada data :)"
+            android:id="@+id/textNodata"/>
     </LinearLayout>
 
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="5dp"
+        android:layout_alignParentRight="true">
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabTambahData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:backgroundTint="@color/bg_screen3"
+            app:elevation="6dp"
+            app:pressedTranslationZ="12dp"
+            android:tint="@color/c_white"
+            android:src="@drawable/ic_add_black_24dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Tambah Anak"
+            android:layout_marginTop="5dp"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+</RelativeLayout>

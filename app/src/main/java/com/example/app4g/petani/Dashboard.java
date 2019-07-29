@@ -61,29 +61,7 @@ public class Dashboard extends Fragment {
         return view;
     }
 
-//    @OnClick(R.id.linearFab1)
-//    void keluarApps(){
-//        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-//        builder.setTitle(Html.fromHtml("<font color='#009688'><b>Yakin ingin keluar ?</b></font>"))
-//                .setCancelable(false)
-//                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int id) {
-////                        keluar();
-//                        session.setLogin(false);
-//                        session.setSkip(false);
-//                        session.setSessid(0);
-//                        Intent intent = new Intent(getActivity(), Login.class);
-//                        startActivity(intent);
-//                        getActivity().finish();
-//                    }
-//                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                builder.setCancelable(true);
-//            }
-//        })
-//                .show();
-//    }
+
 
     @OnClick(R.id.fab)
     void openFab(){
@@ -93,7 +71,8 @@ public class Dashboard extends Fragment {
     @OnClick(R.id.linearFab1)
     void keluar(){
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle(Html.fromHtml("<font color='#009688'><b>Yakin ingin keluar ?</b></font>"))
+        builder.setTitle(Html.fromHtml("<font color='#009688'><b>Yakin ingin keluar ?</b></font>")).
+                setIcon(R.drawable.lampung_coa)
                 .setCancelable(false)
                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {

@@ -149,12 +149,11 @@ public class InputDataAnak extends AppCompatActivity implements IInputAnakView {
                     this);
             alertDialogBuilder.setTitle(msg);
             alertDialogBuilder
-                    .setMessage("Ingin menambah anak lagi ?")
+                    .setMessage("Ingin menambah data anak lagi ?")
                     .setIcon(R.drawable.lampung_coa)
                     .setCancelable(false)
                     .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog,int id) {
-                            // jika tombol diklik, maka akan menutup activity ini
                             Intent a = new Intent(InputDataAnak.this, InputDataAnak.class);
                             startActivity(a);
                             finish();

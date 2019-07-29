@@ -1,16 +1,25 @@
 package com.example.app4g.data;
 
 public class DataAnak {
-    public String nik,jenisKelami, nama, tglLahir;
+    public String nik,jenisKelami, nama, tglLahir, idAnak;
 
 
     public DataAnak(){}
 
-    public DataAnak(String nik,String jenisKelami, String nama, String tglLahir){
+    public DataAnak(String nik,String jenisKelami, String nama, String tglLahir, String idAnak){
         this.nik = nik;
         this.nama = nama;
         this.tglLahir= tglLahir;
         this.jenisKelami = jenisKelami;
+        this.idAnak = idAnak;
+    }
+
+    public String getIdAnak() {
+        return idAnak;
+    }
+
+    public void setIdAnak(String idAnak) {
+        this.idAnak = idAnak;
     }
 
     public String getJenisKelami() {

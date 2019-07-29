@@ -12,6 +12,10 @@
         <item name="colorAccent">@color/red</item> <!-- Whatever color you want-->
     </style>
 
+    <style name="Nganu">
+        <item name="colorAccent">@color/c_white</item> <!-- Whatever color you want-->
+    </style>
+
         <style name="HeaderBar">
             <item name="android:background">@color/c_white</item>
         </style>

@@ -161,7 +161,7 @@
                         android:id="@+id/rb_laki"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Laki laki" />
+                        android:text="Laki-Laki" />
 
                     <RadioButton
                         android:id="@+id/rb_perempuan"
@@ -223,8 +223,15 @@
                 android:background="@drawable/btn_rounded_green"
                 android:text="Submit"
                 android:textAllCaps="false"
+                android:drawablePadding="2dip"
+                android:layout_gravity="center"
+                android:drawableLeft="@drawable/ic_add_black_24dp"
                 android:textColor="@color/c_white"
-                android:textSize="17dp" />
+                android:textSize="17dp"
+                android:paddingLeft="30dip"
+                android:paddingRight="26dip"
+                android:singleLine="true"
+                android:gravity="center"/>
 
             <ProgressBar
                 android:id="@+id/progress_login"
