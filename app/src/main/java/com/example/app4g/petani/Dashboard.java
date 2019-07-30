@@ -17,6 +17,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 
+import com.example.app4g.petani.jatah.ListDataPupuk;
 import com.example.app4g.R;
 import com.example.app4g.petani.anak.ListDataAnak;
 import com.example.app4g.session.SessionManager;
@@ -61,7 +62,29 @@ public class Dashboard extends Fragment {
         return view;
     }
 
-
+//    @OnClick(R.id.linearFab1)
+//    void keluarApps(){
+//        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+//        builder.setTitle(Html.fromHtml("<font color='#009688'><b>Yakin ingin keluar ?</b></font>"))
+//                .setCancelable(false)
+//                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int id) {
+////                        keluar();
+//                        session.setLogin(false);
+//                        session.setSkip(false);
+//                        session.setSessid(0);
+//                        Intent intent = new Intent(getActivity(), Login.class);
+//                        startActivity(intent);
+//                        getActivity().finish();
+//                    }
+//                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                builder.setCancelable(true);
+//            }
+//        })
+//                .show();
+//    }
 
     @OnClick(R.id.fab)
     void openFab(){
@@ -71,8 +94,7 @@ public class Dashboard extends Fragment {
     @OnClick(R.id.linearFab1)
     void keluar(){
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle(Html.fromHtml("<font color='#009688'><b>Yakin ingin keluar ?</b></font>")).
-                setIcon(R.drawable.lampung_coa)
+        builder.setTitle(Html.fromHtml("<font color='#009688'><b>Yakin ingin keluar ?</b></font>"))
                 .setCancelable(false)
                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
@@ -112,10 +134,25 @@ public class Dashboard extends Fragment {
 //                        session.setLogin(false);
 //                        session.setSkip(false);
 //                        session.setSessid(0);
-                        Intent intent = new Intent(getActivity(), ListDataAnak.class);
-                        startActivity(intent);
-                        getActivity().finish();
-                    }
+        Intent intent = new Intent(getActivity(), ListDataAnak.class);
+        startActivity(intent);
+        getActivity().finish();
+    }
+    @OnClick(R.id.LinierPupuk)
+    void btnPupuk(){
+//        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+//        builder.setTitle(Html.fromHtml("<font color='#009688'><b>Yakin ingin keluar ?</b></font>"))
+//                .setCancelable(false)
+//                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int id) {
+//                        keluar();
+//                        session.setLogin(false);
+//                        session.setSkip(false);
+//                        session.setSessid(0);
+        Intent intent = new Intent(getActivity(), ListDataPupuk.class);
+        startActivity(intent);
+        getActivity().finish();
+    }
 //                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
 //            @SuppressLint("RestrictedApi")
 //            @Override

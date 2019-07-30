@@ -19,4 +19,7 @@ public class Config_URL
     //data anak
     public static String dataAnak     = base_URL + "/cekanak/";
     public static String anak         = base_URL + "/anak";
+
+    //data pupuk
+    public static String dataPupuk     = base_URL + "/jatah/";
 }
