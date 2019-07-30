@@ -49,7 +49,7 @@ public class ListDataPupuk extends AppCompatActivity {
     String strId, strNik, strNotelp, strNama, strRole, strToken, strKtp, strKk, strPotoPropil;
 //    ArrayList<DataAnak> newsList = new ArrayList<DataAnak>();
 //    AdapterAnak adapter;
-    String strIdPupuk, strNamaPupuk, strJenisPupuk, strJmlhPupuk;
+    String strIdPupuk, strNamaPupuk, strJenisPupuk, strJmlhPupuk, strKomoditas;
     ArrayList<DataPupuk> newsList = new ArrayList<DataPupuk>();
     AdapterPupuk adapter;
 
@@ -75,43 +75,7 @@ public class ListDataPupuk extends AppCompatActivity {
 
     }
 
-    private void getData() {
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
 
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Config_URL.dataPupuk+strIdPupuk, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                for (int i = 0; i < response.length(); i++) {
-                    try {
-                        JSONObject jsonObject = response.getJSONObject(i);
-
-                        DataPupuk pupuk = new DataPupuk();
-                        pupuk.setNamaPupuk(jsonObject.getString("nama_pupuk"));
-                        pupuk.setJenisPupuk(jsonObject.getString("jenis"));
-                        pupuk.setJmlhPupuk(jsonObject.getString("jumlah"));
-                        newsList.add(pupuk);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                        progressDialog.dismiss();
-                    }
-                }
-                adapter.notifyDataSetChanged();
-                progressDialog.dismiss();
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("Volley", error.toString());
-                progressDialog.dismiss();
-            }
-        });
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(jsonArrayRequest);
-    }
-
-    // Fungsi get JSON Mahasiswa
     private void getNamaPupuk() {
 
         String tag_string_req = "req";
@@ -143,6 +107,7 @@ public class ListDataPupuk extends AppCompatActivity {
                                     pupuk.setNamaPupuk(jsonObject.getString("nama_pupuk"));
                                     pupuk.setJenisPupuk(jsonObject.getString("jenis"));
                                     pupuk.setJmlhPupuk(jsonObject.getString("jumlah"));
+                                    pupuk.setKomoDitas(jsonObject.getString("komoditas"));
 
                                     newsList.add(pupuk);
                                 }

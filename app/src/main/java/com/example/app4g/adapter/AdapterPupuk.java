@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.support.design.animation.Positioning;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -64,14 +65,19 @@ public class AdapterPupuk extends BaseAdapter{
             convertView = inflater.inflate(R.layout.content_pupuk, null);//buat xml layout content
 
 
-        TextView namaPupuk           = (TextView) convertView.findViewById(R.id.namaPupuk);
-        TextView jenisPupuk          = (TextView) convertView.findViewById(R.id.jenisPupuk);
-        TextView jmlhPupuk           = (TextView) convertView.findViewById(R.id.jmlhPupuk);
+        TextView namaPupuk = (TextView) convertView.findViewById(R.id.namaPupuk);
+        TextView jenisPupuk = (TextView) convertView.findViewById(R.id.jenisPupuk);
+        TextView jmlhPupuk = (TextView) convertView.findViewById(R.id.jmlhPupuk);
+        TextView komoDitas = (TextView) convertView.findViewById(R.id.komoDitas);
 
         namaPupuk.setText(item.get(position).getNamaPupuk());
         jenisPupuk.setText(item.get(position).getJenisPupuk());
         jmlhPupuk.setText(item.get(position).getJmlhPupuk());
-
+        if (item.get(position).getKomoDitas().equals("null")) {
+            komoDitas.setText("-");
+        }else {
+            komoDitas.setText(item.get(position).getKomoDitas());
+        }
         return convertView;
     }
 }

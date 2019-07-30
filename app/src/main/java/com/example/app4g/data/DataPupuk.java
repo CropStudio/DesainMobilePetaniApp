@@ -1,16 +1,17 @@
 package com.example.app4g.data;
 
 public class DataPupuk {
-    public String idPupuk,namaPupuk, jenisPupuk, jmlhPupuk;
+    public String idPupuk,namaPupuk, jenisPupuk, jmlhPupuk, komoDitas;
 
 
    public DataPupuk(){}
 
-    public DataPupuk(String idPupuk,String namaPupuk, String jenisPupuk, String jmlhPupuk){
+    public DataPupuk(String idPupuk,String namaPupuk, String jenisPupuk, String jmlhPupuk, String komoDitas){
         this.idPupuk = idPupuk;
         this.namaPupuk = namaPupuk;
         this.jenisPupuk = jenisPupuk;
         this.jmlhPupuk = jmlhPupuk;
+        this.komoDitas = komoDitas;
     }
 
     public String getIdPupuk() {
@@ -43,5 +44,13 @@ public class DataPupuk {
 
     public void setJmlhPupuk(String jmlhPupuk) {
         this.jmlhPupuk = jmlhPupuk;
+    }
+
+    public String getKomoDitas() {
+        return komoDitas;
+    }
+
+    public void setKomoDitas(String komoDitas) {
+        this.komoDitas = komoDitas;
     }
 }
